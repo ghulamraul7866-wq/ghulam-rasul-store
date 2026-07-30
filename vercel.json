@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/ghulam-rasul-store",
+  "outputDirectory": "dist/ghulam-rasul-store/browser",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
