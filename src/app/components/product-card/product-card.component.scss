@@ -1,0 +1,158 @@
+.gr-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--gr-surface);
+  border: 1px solid var(--gr-border);
+  border-radius: var(--gr-radius);
+  overflow: hidden;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    border-color: var(--gr-border-strong);
+    transform: translateY(-2px);
+  }
+
+  &--out {
+    .gr-card__media img {
+      filter: grayscale(55%) brightness(0.7);
+    }
+  }
+}
+
+.gr-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--gr-surface-alt);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* Signature element: a folded ticket-stub price tag, echoing a bazaar
+   stall's hand-written price card pinned to the corner of the goods. */
+.gr-card__price {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px 5px 12px;
+  background: var(--gr-accent);
+  color: #241505;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 3px 3px 3px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 0 6px;
+    border-color: transparent transparent transparent #a5741f;
+  }
+}
+
+.gr-card__category {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 3px 9px;
+  background: rgba(15, 28, 46, 0.72);
+  color: var(--gr-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  backdrop-filter: blur(3px);
+}
+
+.gr-card__body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.gr-card__name {
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.gr-card__desc {
+  color: var(--gr-text-muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.gr-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.gr-card__stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  &--in {
+    color: var(--gr-good);
+
+    &::before {
+      background: var(--gr-good);
+    }
+  }
+
+  &--out {
+    color: var(--gr-accent-2);
+
+    &::before {
+      background: var(--gr-accent-2);
+    }
+  }
+}
+
+.gr-card__add {
+  padding: 7px 14px;
+  border-radius: var(--gr-radius-sm);
+  border: 1px solid var(--gr-accent);
+  background: transparent;
+  color: var(--gr-accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--gr-accent);
+    color: #241505;
+  }
+
+  &:disabled {
+    border-color: var(--gr-border);
+    color: var(--gr-text-muted);
+    cursor: not-allowed;
+  }
+}

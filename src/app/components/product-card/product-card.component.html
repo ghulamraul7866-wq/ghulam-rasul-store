@@ -1,0 +1,31 @@
+<article class="gr-card" [class.gr-card--out]="!product.inStock">
+  <div class="gr-card__media">
+    <img [src]="product.imageUrl" [alt]="product.name" loading="lazy" />
+    <span class="gr-card__price" aria-hidden="true">{{ product.price | currency }}</span>
+    <span class="gr-card__category">{{ product.category }}</span>
+  </div>
+
+  <div class="gr-card__body">
+    <h3 class="gr-card__name">{{ product.name }}</h3>
+    <p class="gr-card__desc">{{ product.description }}</p>
+
+    <div class="gr-card__footer">
+      <span
+        class="gr-card__stock"
+        [class.gr-card__stock--in]="product.inStock"
+        [class.gr-card__stock--out]="!product.inStock"
+      >
+        {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+      </span>
+
+      <button
+        type="button"
+        class="gr-card__add"
+        [disabled]="!product.inStock"
+        (click)="addToCart()"
+      >
+        Add to cart
+      </button>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,8 @@
+<app-header (cartToggle)="openCart()" />
+
+<div class="gr-layout">
+  <app-sidenav />
+  <app-product-grid />
+</div>
+
+<app-cart-drawer [open]="cartOpen()" (closed)="closeCart()" />

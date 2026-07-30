@@ -1,0 +1,19 @@
+<nav class="gr-sidenav" aria-label="Product categories">
+  <p class="gr-sidenav__eyebrow">Stalls</p>
+  <ul class="gr-sidenav__list">
+    @for (category of categories; track category) {
+      <li>
+        <button
+          type="button"
+          class="gr-sidenav__item"
+          [class.gr-sidenav__item--active]="selectedCategory() === category"
+          (click)="select(category)"
+        >
+          <span class="gr-sidenav__dot" aria-hidden="true"></span>
+          <span class="gr-sidenav__label">{{ category }}</span>
+          <span class="gr-sidenav__count">{{ countsByCategory()[category] }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

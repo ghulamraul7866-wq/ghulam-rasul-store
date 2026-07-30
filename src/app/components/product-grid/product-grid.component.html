@@ -1,0 +1,24 @@
+<section class="gr-grid-section">
+  <header class="gr-grid-header">
+    @if (searchTerm()) {
+      <h2>Results for "{{ searchTerm() }}"</h2>
+      <p>{{ products().length }} item{{ products().length === 1 ? '' : 's' }} found</p>
+    } @else {
+      <h2>{{ selectedCategory() === allCategory ? 'All Goods' : selectedCategory() }}</h2>
+      <p>{{ products().length }} item{{ products().length === 1 ? '' : 's' }} on this stall</p>
+    }
+  </header>
+
+  @if (products().length > 0) {
+    <div class="gr-grid">
+      @for (product of products(); track product.id) {
+        <app-product-card [product]="product" />
+      }
+    </div>
+  } @else {
+    <div class="gr-grid-empty">
+      <p class="gr-grid-empty__title">No goods match that search.</p>
+      <p class="gr-grid-empty__hint">Try a different term, or browse a stall from the left.</p>
+    </div>
+  }
+</section>

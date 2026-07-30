@@ -1,0 +1,43 @@
+@if (open) {
+  <div class="gr-drawer-backdrop" (click)="close()"></div>
+  <aside class="gr-drawer" aria-label="Shopping cart">
+    <header class="gr-drawer__header">
+      <h2>Your Basket</h2>
+      <button type="button" class="gr-drawer__close" (click)="close()" aria-label="Close cart">&times;</button>
+    </header>
+
+    @if (lines().length > 0) {
+      <ul class="gr-drawer__list">
+        @for (line of lines(); track line.product.id) {
+          <li class="gr-drawer__line">
+            <img [src]="line.product.imageUrl" [alt]="line.product.name" />
+            <div class="gr-drawer__line-info">
+              <p class="gr-drawer__line-name">{{ line.product.name }}</p>
+              <p class="gr-drawer__line-meta">
+                {{ line.quantity }} &times; {{ line.product.price | currency }}
+              </p>
+            </div>
+            <button
+              type="button"
+              class="gr-drawer__line-remove"
+              (click)="remove(line.product.id)"
+              [attr.aria-label]="'Remove ' + line.product.name"
+            >
+              &times;
+            </button>
+          </li>
+        }
+      </ul>
+
+      <footer class="gr-drawer__footer">
+        <div class="gr-drawer__subtotal">
+          <span>Subtotal</span>
+          <strong>{{ subtotal() | currency }}</strong>
+        </div>
+        <button type="button" class="gr-drawer__checkout">Checkout</button>
+      </footer>
+    } @else {
+      <p class="gr-drawer__empty">Your basket is empty. Explore the stalls to find something.</p>
+    }
+  </aside>
+}
